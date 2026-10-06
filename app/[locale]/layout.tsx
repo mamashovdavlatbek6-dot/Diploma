@@ -1,3 +1,5 @@
+import { cookies } from 'next/headers';
+import { Runtime } from '@/components/layout/runtime';
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
@@ -42,14 +44,16 @@ export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const m = getMessages(locale);
+  const theme = (await cookies()).get('AEGIS_THEME')?.value === 'light' ? 'light' : 'dark';
 
   return (
-    <html lang={localeTags[locale]} className={`${unbounded.variable} ${onest.variable} ${jetbrains.variable}`}>
+    <html data-theme={theme} lang={localeTags[locale]} className={`${unbounded.variable} ${onest.variable} ${jetbrains.variable}`}>
       <body className="min-h-dvh antialiased">
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-surface focus:px-4 focus:py-2">
           {m.skip}
         </a>
-        <SiteHeader locale={locale} messages={m} />
+        <SiteHeader locale={locale} messages={m} theme={theme} />
+        <Runtime />
         <main id="main">{children}</main>
         <SiteFooter messages={m} />
       </body>

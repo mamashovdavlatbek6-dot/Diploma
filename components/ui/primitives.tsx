@@ -1,0 +1,6 @@
+import type { ReactNode } from 'react';
+import { MagneticLink } from './magnetic-link';
+export function Panel({title,kicker,children,className=''}:{title?:string;kicker?:string;children:ReactNode;className?:string}){return <section className={`panel ${className}`}>{(title||kicker)&&<header className="panel-heading"><div>{kicker&&<span className="eyebrow">{kicker}</span>}{title&&<h2>{title}</h2>}</div></header>}{children}</section>;}
+export function ActionLink({href,children,secondary=false}:{href:string;children:ReactNode;secondary?:boolean}){return <MagneticLink href={href} secondary={secondary}>{children}</MagneticLink>;}
+export function Chip({children,tone='cyan'}:{children:ReactNode;tone?:string}){return <span className={`chip tone-${tone}`}>{children}</span>;}
+export function Gauge({value,label}:{value:number;label:string}){const normalized=Math.min(100,Math.max(0,value));return <div className="gauge" role="meter" aria-label={label} aria-valuemin={0} aria-valuemax={100} aria-valuenow={normalized}><svg viewBox="0 0 120 120" aria-hidden><circle cx="60" cy="60" r="48" className="gauge-track"/><circle cx="60" cy="60" r="48" className="gauge-value" pathLength="100" strokeDasharray={`${normalized} 100`} transform="rotate(-90 60 60)"/></svg><div><strong>{normalized}</strong><span>{label}</span></div></div>;}

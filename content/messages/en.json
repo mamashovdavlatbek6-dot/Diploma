@@ -33,5 +33,10 @@
     "rights": "Diploma project",
     "source": "Source code"
   },
-  "skip": "Skip to content"
+  "skip": "Skip to content",
+  "ui": {
+    "theme": "Theme",
+    "menu": "Menu",
+    "close": "Close"
+  }
 }

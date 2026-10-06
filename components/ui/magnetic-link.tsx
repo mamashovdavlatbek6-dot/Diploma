@@ -1,0 +1,3 @@
+'use client';
+import Link from 'next/link';import type { ReactNode } from 'react';
+export function MagneticLink({href,children,secondary=false}:{href:string;children:ReactNode;secondary?:boolean}){return <Link className={`action ${secondary?'secondary':''}`} href={href} onPointerMove={e=>{if(secondary||e.pointerType!=='mouse'||matchMedia('(prefers-reduced-motion:reduce)').matches)return;const r=e.currentTarget.getBoundingClientRect();e.currentTarget.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.07}px,${(e.clientY-r.top-r.height/2)*.12}px)`;}} onPointerLeave={e=>{e.currentTarget.style.transform='';}}>{children}<span aria-hidden>↗</span></Link>;}
