@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "Aegis SOC — network threat monitoring",
+    "description": "An intelligent system for monitoring and detecting network security threats."
+  },
+  "nav": {
+    "home": "Home",
+    "console": "Console",
+    "analyze": "Analyze",
+    "incidents": "Incidents",
+    "method": "Method",
+    "about": "About",
+    "language": "Language",
+    "primary": "Primary navigation"
+  },
+  "home": {
+    "eyebrow": "Diploma project · SOC",
+    "title": "See attacks before damage",
+    "subtitle": "Events → detection → correlation → response.",
+    "status": "Phase 1: scaffold ready",
+    "pipeline": {
+      "ingest": "Ingest",
+      "detect": "Detect",
+      "correlate": "Correlate",
+      "respond": "Respond"
+    }
+  },
+  "diploma": {
+    "label": "Diploma topic",
+    "topic": "Development of an intelligent system for monitoring and detecting network security threats"
+  },
+  "footer": {
+    "rights": "Diploma project",
+    "source": "Source code"
+  },
+  "skip": "Skip to content"
+}

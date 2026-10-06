@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+:root {
+  --background: #05070d;
+  --surface: #0b0f19;
+  --foreground: #e6edf7;
+  --muted: #8a94a8;
+  --border: rgb(255 255 255 / 0.08);
+  --primary: #22e4d6;
+  --secondary: #8b5cf6;
+  --sev-critical: #ff3b5c;
+  --sev-high: #ff8a3d;
+  --sev-medium: #f5b83d;
+  --sev-low: #4c8dff;
+  --sev-info: #8a94a8;
+  --glow: 0 0 40px rgb(34 228 214 / 0.25);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-line: var(--border);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-critical: var(--sev-critical);
+  --color-high: var(--sev-high);
+  --color-medium: var(--sev-medium);
+  --color-low: var(--sev-low);
+  --color-info: var(--sev-info);
+  --font-display: var(--font-unbounded), system-ui, sans-serif;
+  --font-sans: var(--font-onest), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --shadow-glow: var(--glow);
+}
+
+@utility glass {
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0.015));
+  border: 1px solid var(--border);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+@utility text-gradient {
+  background: linear-gradient(100deg, var(--foreground) 20%, var(--primary) 60%, var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-image:
+    radial-gradient(60rem 40rem at 80% -10%, rgb(139 92 246 / 0.14), transparent 60%),
+    radial-gradient(50rem 35rem at 0% 10%, rgb(34 228 214 / 0.1), transparent 60%);
+  background-attachment: fixed;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
