@@ -1,0 +1,4 @@
+import { alert, groups } from './common';
+import { detectionConfig as c } from './config';
+import type { Detector } from './types';
+export const portScan:Detector = events => groups(events,e=>e.src_ip).flatMap(g=>{const ports=new Set(g.map(e=>e.dst_port).filter(v=>v!==null)).size;const hosts=new Set(g.map(e=>e.dst_ip).filter(Boolean)).size;const failed=g.filter(e=>['failure','deny'].includes(e.action)).length/g.length;const syn=g.filter(e=>e.tcp_flags?.includes('S')&&!e.tcp_flags.includes('A')).length/g.length;return (ports>=c.port_scan.ports||hosts>=c.port_scan.hosts)&&(failed>=c.port_scan.failedRatio||syn>=c.port_scan.synRatio)?[alert('port_scan',g,'high',[{field:'distinct_ports',value:ports,threshold:c.port_scan.ports},{field:'distinct_hosts',value:hosts,threshold:c.port_scan.hosts},{field:'failed_ratio',value:failed},{field:'syn_ratio',value:syn}])]:[];});

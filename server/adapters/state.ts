@@ -2,12 +2,14 @@
  * Sliding-window / counter state. In-memory per instance by default; Upstash
  * Redis REST when UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN are set.
  */
+import type { NormalizedEvent } from '@/server/schema/event';
 export interface StateAdapter {
   readonly kind: "memory" | "upstash";
   /** Atomically increments `key`, setting a TTL on first increment. */
   incr(key: string, ttlSeconds: number): Promise<{ count: number; ttlMs: number }>;
   getJson<T>(key: string): Promise<T | null>;
   setJson(key: string, value: unknown, ttlSeconds: number): Promise<void>;
+  appendEvents(key: string, events: NormalizedEvent[], capacity: number): Promise<NormalizedEvent[]>;
 }
 
 export class MemoryState implements StateAdapter {
@@ -57,6 +59,13 @@ export class MemoryState implements StateAdapter {
     this.evict();
     this.map.set(key, { value: JSON.stringify(value), expires: this.clock() + ttlSeconds * 1000 });
   }
+  async appendEvents(key: string, events: NormalizedEvent[], capacity: number) {
+    const old = this.live(key);
+    const window = [...(old ? JSON.parse(old.value) as NormalizedEvent[] : []), ...events].slice(-capacity);
+    this.evict();
+    this.map.set(key, { value: JSON.stringify(window), expires: this.clock() + 600000 });
+    return window;
+  }
 }
 
 type Fetch = typeof fetch;
@@ -100,6 +109,11 @@ export class UpstashState implements StateAdapter {
 
   async setJson(key: string, value: unknown, ttlSeconds: number) {
     await this.pipeline([["SET", key, JSON.stringify(value), "EX", ttlSeconds]]);
+  }
+  async appendEvents(key: string, events: NormalizedEvent[], capacity: number) {
+    const script = "local old=cjson.decode(redis.call('GET',KEYS[1]) or '[]'); local new=cjson.decode(ARGV[1]); for _,e in ipairs(new) do table.insert(old,e) end; local out={}; local first=math.max(1,#old-tonumber(ARGV[2])+1); for i=first,#old do table.insert(out,old[i]) end; local encoded=cjson.encode(out); redis.call('SET',KEYS[1],encoded,'EX',600); return encoded";
+    const [value] = await this.pipeline([['EVAL', script, 1, key, JSON.stringify(events), capacity]]);
+    return JSON.parse(String(value)) as NormalizedEvent[];
   }
 }
 

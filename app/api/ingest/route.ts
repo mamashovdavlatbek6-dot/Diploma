@@ -1,3 +1,4 @@
+import { ingestPipeline, publicData } from "@/server/services/pipeline";
 import { getStore } from "@/server/adapters/store";
 import { requireToken } from "@/server/security/auth";
 import { toErrorResponse } from "@/server/security/errors";
@@ -17,11 +18,15 @@ export async function POST(request: Request) {
     const source = request.headers.get("x-aegis-source") === "agent" ? "agent" as const : "api" as const;
     const events = source === "agent" ? parsed.events.map((e) => ({ ...e, source })) : parsed.events;
     const accepted = await getStore().append(events);
+    const detection = await ingestPipeline(events);
     return Response.json(
       {
         format: parsed.format,
         records: parsed.records,
         accepted,
+        alerts: publicData(detection.alerts),
+        incidents: publicData(detection.incidents),
+        simulation: false,
         rejected: parsed.records - accepted - (parsed.truncated ? 1 : 0),
         truncated: parsed.truncated,
         errors: parsed.errors,

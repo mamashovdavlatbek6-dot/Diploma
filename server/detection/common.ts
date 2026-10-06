@@ -1,0 +1,11 @@
+import { createHash } from 'node:crypto';
+import type { NormalizedEvent } from '@/server/schema/event';
+import { detectionConfig, detectorMeta } from './config';
+import type { Alert, AttackType, Evidence, Severity } from './types';
+export function id(value:string) { return createHash('sha256').update(value).digest('hex').slice(0,20); }
+export function groups<T>(values: readonly T[], key:(value:T)=>string):T[][] { const map=new Map<string,T[]>(); for(const value of values){const k=key(value);const group=map.get(k)??[];group.push(value);map.set(k,group);} return [...map.values()]; }
+export function mean(values:readonly number[]) { return values.reduce((s,v)=>s+v,0)/Math.max(1,values.length); }
+export function cv(values:readonly number[]) { const avg=mean(values); return avg>0?Math.sqrt(mean(values.map(v=>(v-avg)**2)))/avg:Infinity; }
+export function entropy(value:string) { const counts=new Map<string,number>();for(const c of value)counts.set(c,(counts.get(c)??0)+1);return [...counts.values()].reduce((s,n)=>s-n/value.length*Math.log2(n/value.length),0); }
+export function internal(ip:string|null) { if(!ip)return false;return /^(10\.|192\.168\.|127\.|169\.254\.|f[cd][0-9a-f]{2}:|::1$)/i.test(ip)||(/^172\.(\d+)\./.test(ip)&&Number(ip.split('.')[1])>=16&&Number(ip.split('.')[1])<=31); }
+export function alert(type:AttackType, events:readonly NormalizedEvent[], severity:Severity, evidence:Evidence[], confidence=.9):Alert {const sorted=[...events].sort((a,b)=>a.ts.localeCompare(b.ts));const first=sorted[0];const meta=detectorMeta[type];const entities=[...new Set(events.flatMap(e=>[e.src_ip,...(e.dst_ip?[e.dst_ip]:[])]))].sort().slice(0,50);const numeric=evidence.filter(e=>typeof e.value==='number');return {id:id(`${type}:${entities.join(',')}:${Math.floor(Date.parse(first.ts)/detectionConfig.windowMs)}`),type,ts:sorted.at(-1)!.ts,source:first.source,simulation:events.every(e=>e.source==='sim'),severity,confidence,entities,evidence,mitre:meta.mitre,stage:meta.stage,recommended_action:[...meta.actions],contributions:numeric.map(e=>({feature:e.field,value:Number(e.value),weight:1/Math.max(1,numeric.length)})),event_refs:sorted.slice(0,12).map(e=>e.raw_ref??id(JSON.stringify(e)))};}

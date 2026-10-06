@@ -1,15 +1,5 @@
-import type { NormalizedEvent } from "@/server/schema/event";
-
-/**
- * Detection entry point. Detectors are implemented in phase 3; until then this
- * honestly returns no alerts and reports the engine status. No fake detections.
- */
-export interface DetectionOutput {
-  alerts: never[];
-  engine: { status: "not_implemented"; detectors: 0; available_from_phase: 3 };
-}
-
-export function runDetection(events: readonly NormalizedEvent[]): DetectionOutput {
-  void events;
-  return { alerts: [], engine: { status: "not_implemented", detectors: 0, available_from_phase: 3 } };
-}
+import type { NormalizedEvent } from '@/server/schema/event';
+import { portScan } from './port-scan';import { bruteForce } from './brute-force';import { flood } from './flood';import { dnsTunnel } from './dns-tunnel';import { beacon } from './beacon';import { exfiltration } from './exfiltration';import { lateral } from './lateral';import { webAttack } from './web-attack';import { threatIntel } from './threat-intel';import { geoAnomaly } from './geo-anomaly';
+import { detectionConfig } from './config';import type { Alert, Detector } from './types';
+export const detectors:Detector[]=[portScan,bruteForce,flood,dnsTunnel,beacon,exfiltration,lateral,webAttack,threatIntel,geoAnomaly];
+export function runDetection(events:readonly NormalizedEvent[]) {const windows=new Map<number,NormalizedEvent[]>();const step=detectionConfig.windowMs/2;for(const e of events){const bucket=Math.floor(Date.parse(e.ts)/step);for(const key of [bucket,bucket-1]){const g=windows.get(key)??[];g.push(e);windows.set(key,g);}}const unique=new Map<string,Alert>();for(const window of windows.values())for(const detect of detectors)for(const a of detect(window)){const prior=unique.get(a.id);if(!prior||a.confidence>prior.confidence||a.event_refs.length>prior.event_refs.length)unique.set(a.id,a);}return {alerts:[...unique.values()].sort((a,b)=>b.ts.localeCompare(a.ts)).slice(0,detectionConfig.maxAlerts),engine:{status:'ready',detectors:detectors.length,window_ms:detectionConfig.windowMs,version:'1.0'}};}

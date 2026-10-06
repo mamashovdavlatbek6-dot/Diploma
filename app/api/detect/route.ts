@@ -1,4 +1,4 @@
-import { runDetection } from "@/server/detection";
+import { pipeline, publicData } from "@/server/services/pipeline";
 import { toErrorResponse } from "@/server/security/errors";
 import { enforceRateLimit, RATE_LIMITS } from "@/server/security/rate-limit";
 import { LIMITS } from "@/server/services/limits";
@@ -13,7 +13,7 @@ export async function POST(request: Request) {
   try {
     const rl = await enforceRateLimit(request, RATE_LIMITS.detect);
     const parsed = await parseRequest(request, { source: "api", ...LIMITS.detect });
-    const detection = runDetection(parsed.events);
+    const detection = pipeline(parsed.events);
     return Response.json(
       {
         format: parsed.format,
@@ -21,9 +21,12 @@ export async function POST(request: Request) {
         normalized: parsed.events.length,
         truncated: parsed.truncated,
         errors: parsed.errors,
-        alerts: detection.alerts,
+        alerts: publicData(detection.alerts),
+        incidents: publicData(detection.incidents),
+        source: "api",
+        simulation: false,
         engine: detection.engine,
-        note: "Detectors ship in phase 3; zero alerts here means detection is not yet implemented, not that traffic is clean.",
+        note: "Detection is probabilistic; false positives and false negatives are possible.",
       },
       { headers: { ...rl, "Cache-Control": "no-store" } },
     );

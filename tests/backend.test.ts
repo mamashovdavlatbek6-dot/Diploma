@@ -228,14 +228,14 @@ describe("services and APIs", () => {
     expect(s.top_src_ips[0]).toEqual({ ip: "8.8.8.0", count: 2 });
     expect(s.top_dst_ports[0]).toEqual({ port: 53, count: 2 });
   });
-  it("detection reports not-implemented honestly (phase 3)", () => {
-    expect(runDetection([])).toEqual({ alerts: [], engine: { status: "not_implemented", detectors: 0, available_from_phase: 3 } });
+  it("detection reports a ready detection engine", () => {
+    expect(runDetection([])).toMatchObject({ alerts: [], engine: { status: "ready", detectors: 10 } });
   });
   it("POST /api/detect normalizes an auth.log batch and returns zero alerts", async () => {
     const res = await detectPost(new Request("http://x/api/detect", { method: "POST", body: AUTH, headers: { "content-type": "text/plain", "x-real-ip": "7.7.7.7" } }));
     const body = await res.json();
     expect(res.status).toBe(200);
-    expect(body).toMatchObject({ format: "auth-log", normalized: 2, alerts: [], engine: { status: "not_implemented" } });
+    expect(body).toMatchObject({ format: "auth-log", normalized: 2, alerts: [], engine: { status: "ready" } });
   });
   it("POST /api/detect rejects unsupported media and unknown format", async () => {
     const r1 = await detectPost(new Request("http://x/api/detect", { method: "POST", body: "x", headers: { "content-type": "image/png" } }));
