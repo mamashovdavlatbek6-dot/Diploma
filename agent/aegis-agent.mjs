@@ -23,18 +23,20 @@ async function tail(path,s){
    const {bytesRead}=await file.read(buffer,0,size,s.offset);s.offset+=bytesRead;
    const text=s.rest+s.decoder.decode(buffer.subarray(0,bytesRead),{stream:true});const lines=text.split('\n');s.rest=lines.pop()??'';
    if(s.rest.length>16384){console.error('Oversized log line skipped');s.rest='';}
-   for(const line of lines){if(!line.trim()||line.length>16384)continue;queue.push(line);queuedBytes+=Buffer.byteLength(line)+1;}
+   for(const line of lines){if(!line.trim()||line.length>16384)continue;queue.push({line,path});queuedBytes+=Buffer.byteLength(line)+1;}
   }finally{await file.close();}
  }catch(error){console.error(`Cannot tail ${path}: ${error.code??'read failed'}`);}
 }
 async function send(){
  if(!queue.length)return;
- let length=0,count=0;while(count<queue.length&&count<500&&length+Buffer.byteLength(queue[count])+1<512*1024){length+=Buffer.byteLength(queue[count])+1;count++;}
- const batch=queue.slice(0,count).join('\n')+'\n';
+ let length=0;const selected=[],indices=new Set();const path=queue[0].path;
+ for(let i=0;i<queue.length;i++){if(queue[i].path!==path)continue;const bytes=Buffer.byteLength(queue[i].line)+1;if(selected.length>=500||length+bytes>=512*1024)break;length+=bytes;selected.push(queue[i].line);indices.add(i);}
+ const discard=()=>{queue=queue.filter((_,i)=>!indices.has(i));queuedBytes-=length;};
+ const batch=selected.join('\n')+'\n';
  try{
   const response=await fetch(new URL('/api/ingest',base),{method:'POST',headers:{Authorization:`Bearer ${token}`,'Content-Type':'text/plain','x-aegis-source':'agent'},body:batch,signal:AbortSignal.timeout(10000)});
-  if(!response.ok){if([400,413,415,422].includes(response.status)){queue.splice(0,count);queuedBytes-=length;console.error(`Rejected batch (${response.status}); discarded`);return;}throw Error(`HTTP ${response.status}`);}
-  const result=await response.json();queue.splice(0,count);queuedBytes-=length;retry=1000;console.log(`Accepted ${result.accepted}; alerts ${result.alerts.length}; retained queue ${queue.length}`);
+  if(!response.ok){if([400,413,415,422].includes(response.status)){discard();console.error(`Rejected batch (${response.status}); discarded`);return;}throw Error(`HTTP ${response.status}`);}
+  const result=await response.json();discard();retry=1000;console.log(`Accepted ${result.accepted}; alerts ${result.alerts.length}; retained queue ${queue.length}`);
  }catch(error){console.error(`Retry in ${retry} ms: ${error.message}`);await delay(retry);retry=Math.min(retry*2,30000);}
 }
 while(running){for(const [path,state]of states)await tail(path,state);await send();await delay(1000);}

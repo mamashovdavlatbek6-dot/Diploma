@@ -1,0 +1,532 @@
+{
+  "at": "2026-10-06T13:02:18.056Z",
+  "passed": 105,
+  "total": 105,
+  "checks": [
+    {
+      "name": "ru/ HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "ru/ h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ru/ nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ru/console HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "ru/console h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ru/console nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ru/analyze HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "ru/analyze h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ru/analyze nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ru/incidents HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "ru/incidents h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ru/incidents nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ru/method HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "ru/method h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ru/method nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ru/about HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "ru/about h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ru/about nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ru/api-docs HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "ru/api-docs h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ru/api-docs nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ru/privacy HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "ru/privacy h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ru/privacy nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en/ HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "en/ h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en/ nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en/console HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "en/console h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en/console nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en/analyze HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "en/analyze h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en/analyze nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en/incidents HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "en/incidents h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en/incidents nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en/method HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "en/method h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en/method nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en/about HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "en/about h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en/about nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en/api-docs HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "en/api-docs h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en/api-docs nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en/privacy HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "en/privacy h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "en/privacy nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "kk/ HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "kk/ h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "kk/ nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "kk/console HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "kk/console h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "kk/console nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "kk/analyze HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "kk/analyze h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "kk/analyze nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "kk/incidents HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "kk/incidents h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "kk/incidents nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "kk/method HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "kk/method h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "kk/method nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "kk/about HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "kk/about h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "kk/about nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "kk/api-docs HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "kk/api-docs h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "kk/api-docs nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "kk/privacy HTTP",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "kk/privacy h1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "kk/privacy nonce CSP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ru OG",
+      "ok": true,
+      "detail": "200 �PNG\r\n\u001a\n\u0000\u0000\u0000\rIHDR\u0000\u0000\u0004�"
+    },
+    {
+      "name": "en OG",
+      "ok": true,
+      "detail": "200 �PNG\r\n\u001a\n\u0000\u0000\u0000\rIHDR\u0000\u0000\u0004�"
+    },
+    {
+      "name": "kk OG",
+      "ok": true,
+      "detail": "200 �PNG\r\n\u001a\n\u0000\u0000\u0000\rIHDR\u0000\u0000\u0004�"
+    },
+    {
+      "name": "unknown route 404",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "upload ssh-bruteforce.log",
+      "ok": true,
+      "detail": "{\"alerts\":[{\"id\":\"996b69487e4e8b3ba8f9\",\"type\":\"brute_force\",\"ts\":\"2026-10-06T12:00:13.000Z\",\"source"
+    },
+    {
+      "name": "upload ssh-bruteforce.log source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "upload nginx-web.log",
+      "ok": true,
+      "detail": "{\"alerts\":[{\"id\":\"446b5e50f18dd6588bc5\",\"type\":\"web_attack\",\"ts\":\"2026-10-06T12:00:00.000Z\",\"source\""
+    },
+    {
+      "name": "upload nginx-web.log source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "upload cic-scan.csv",
+      "ok": true,
+      "detail": "{\"alerts\":[{\"id\":\"d803ac32d295fb2b945d\",\"type\":\"port_scan\",\"ts\":\"2026-10-06T12:00:23.000Z\",\"source\":"
+    },
+    {
+      "name": "upload cic-scan.csv source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "upload zeek-scan.log",
+      "ok": true,
+      "detail": "{\"alerts\":[{\"id\":\"d803ac32d295fb2b945d\",\"type\":\"port_scan\",\"ts\":\"2026-10-06T12:00:23.000Z\",\"source\":"
+    },
+    {
+      "name": "upload zeek-scan.log source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "upload generic.ndjson",
+      "ok": true,
+      "detail": "{\"alerts\":[{\"id\":\"d803ac32d295fb2b945d\",\"type\":\"port_scan\",\"ts\":\"2026-10-06T12:00:05.750Z\",\"source\":"
+    },
+    {
+      "name": "upload generic.ndjson source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON fixture port_scan",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON fixture brute_force",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON fixture flood",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON fixture dns_tunnel",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON fixture beacon",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON fixture exfiltration",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON fixture lateral",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON fixture web_attack",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON fixture threat_intel",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON fixture geo_anomaly",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "JSON fixture ml_anomaly",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "unauthorized ingest",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "authorized agent ingestion",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ingested source isolated",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "admin mutation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "admin status persistence",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "cross origin blocked",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "invalid file",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "SSE snapshot",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

@@ -96,7 +96,7 @@
         "mitre": "T1110",
         "evidence": [],
         "contributions": [],
-        "actions": [
+        "recommended_action": [
           "rate_limit",
           "reset_credentials"
         ]

@@ -1,3 +1,4 @@
+import { SupabaseEventStore } from './supabase-store';
 import { readFileSync, writeFileSync, renameSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -120,7 +121,7 @@ export function getStore(): EventStore {
   if (!g.__aegisStore) {
     const capacity = Math.min(Math.max(Number(process.env.STORE_CAPACITY) || 5000, 100), 50_000);
     const persist = process.env.STORE_PERSIST === "false" ? null : join(tmpdir(), "aegis-store-v1.json");
-    g.__aegisStore = new MemoryEventStore(capacity, persist);
+    g.__aegisStore = process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY ? new SupabaseEventStore(capacity,process.env.SUPABASE_URL,process.env.SUPABASE_SERVICE_ROLE_KEY) : new MemoryEventStore(capacity, persist);
   }
   return g.__aegisStore;
 }

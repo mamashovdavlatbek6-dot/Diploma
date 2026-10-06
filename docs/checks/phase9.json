@@ -1,0 +1,30 @@
+{
+  "phase": "phase9",
+  "timestamp": "2026-10-06T13:00:55.667Z",
+  "results": [
+    {
+      "command": "npm run lint",
+      "code": 0,
+      "durationMs": 3940,
+      "log": "npm notice run aegis-soc@0.1.0 lint\nnpm notice run eslint .\n"
+    },
+    {
+      "command": "npm run typecheck",
+      "code": 0,
+      "durationMs": 1477,
+      "log": "npm notice run aegis-soc@0.1.0 typecheck\nnpm notice run tsc --noEmit\n"
+    },
+    {
+      "command": "npm run test",
+      "code": 0,
+      "durationMs": 1110,
+      "log": "\n RUN  v3.2.7 /Users/texnomarket/Documents/Codex/2026-10-06/lovable-plugin-lovable-openai-curated-remote/outputs/aegis-soc\n\n ✓ tests/i18n.test.ts (13 tests) 12ms\n ✓ tests/seo-security.test.ts (6 tests) 4ms\n ✓ tests/ml.test.ts (67 tests) 17ms\n ✓ tests/input-hardening.test.ts (5 tests) 5ms\n ✓ tests/detectors.test.ts (29 tests) 114ms\n ✓ tests/phase7.test.ts (16 tests) 54ms\n ✓ tests/backend.test.ts (28 tests) 36ms\n ✓ tests/final-hardening.test.ts (3 tests) 2ms\n\n Test Files  8 passed (8)\n      Tests  167 passed (167)\n   Start at  18:00:43\n   Duration  579ms (transform 530ms, setup 0ms, collect 1.21s, tests 245ms, environment 1ms, prepare 454ms)\n\nnpm notice run aegis-soc@0.1.0 test\nnpm notice run vitest run\n"
+    },
+    {
+      "command": "npm run build",
+      "code": 0,
+      "durationMs": 11424,
+      "log": "▲ Next.js 16.3.8 (webpack)\n✓ Running next.config.ts took 71ms\n\n  Creating an optimized production build ...\n✓ Compiled successfully in 3.5s\n  Running TypeScript ...\n  Finished TypeScript in 1192ms ...\n  Collecting page data using 7 workers ...\n  Generating static pages using 7 workers (0/31) ...\n  Generating static pages using 7 workers (7/31) \r\n  Generating static pages using 7 workers (15/31) \r\n  Generating static pages using 7 workers (23/31) \r\n✓ Generating static pages using 7 workers (31/31) in 565ms\n  Finalizing page optimization ...\n  Collecting build traces ...\n\nRoute (app)\n┌ ○ /_not-found\n├ ƒ /[locale]\n├ ƒ /[locale]/[...missing]\n├ ƒ /[locale]/about\n├ ƒ /[locale]/analyze\n├ ƒ /[locale]/api-docs\n├ ƒ /[locale]/console\n├ ƒ /[locale]/incidents\n├ ƒ /[locale]/incidents/[id]\n├ ƒ /[locale]/method\n├ ƒ /[locale]/og\n├ ƒ /[locale]/privacy\n├ ƒ /api/alerts\n├ ƒ /api/analyze-file\n├ ƒ /api/contact\n├ ƒ /api/detect\n├ ƒ /api/events\n├ ƒ /api/health\n├ ƒ /api/incidents\n├ ƒ /api/incidents/[id]\n├ ƒ /api/ingest\n├ ƒ /api/stats\n├ ƒ /api/stream\n├ ○ /apple-icon\n├ ○ /icon.svg\n├ ○ /manifest.webmanifest\n├ ○ /robots.txt\n└ ○ /sitemap.xml\n\n\nƒ Proxy (Middleware)\n\n○  (Static)   prerendered as static content\nƒ  (Dynamic)  server-rendered on demand\n\nnpm notice run aegis-soc@0.1.0 build\nnpm notice run next build --webpack\n"
+    }
+  ]
+}

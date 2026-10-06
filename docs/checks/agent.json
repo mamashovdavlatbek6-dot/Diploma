@@ -1,0 +1,6 @@
+{
+  "at": "2026-10-06T12:56:01.733Z",
+  "passed": true,
+  "stdout": "Accepted 13; alerts 2; retained queue 1\nAccepted 1; alerts 3; retained queue 0\nAccepted 13; alerts 3; retained queue 0\n",
+  "stderr": ""
+}

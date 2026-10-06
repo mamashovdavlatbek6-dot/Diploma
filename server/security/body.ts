@@ -4,7 +4,7 @@ import { ApiError } from "./errors";
  * Reads a request body as UTF-8 text while enforcing a byte cap on the stream
  * itself, so oversized bodies are rejected without being buffered fully.
  */
-export async function readBodyCapped(request: Request, maxBytes: number): Promise<string> {
+export async function readBodyCapped(request: Pick<Request, "body" | "headers">, maxBytes: number): Promise<string> {
   const declared = Number(request.headers.get("content-length"));
   if (Number.isFinite(declared) && declared > maxBytes) {
     throw new ApiError(413, "payload_too_large", `Body exceeds ${maxBytes} bytes`);

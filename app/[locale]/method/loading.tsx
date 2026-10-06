@@ -1,0 +1,1 @@
+export default function Loading(){return <div className="container" aria-busy="true"><div className="skeleton" style={{minHeight:90,marginBottom:25}}/><div className="about-grid"><div className="skeleton" style={{minHeight:350}}/><div className="skeleton" style={{minHeight:350}}/></div></div>;}

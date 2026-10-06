@@ -13,8 +13,8 @@ export const siteConfig = {
 
   diploma: {
     author: process.env.DIPLOMA_AUTHOR ?? "Davlatbek Mamashov",
-    supervisor: process.env.DIPLOMA_SUPERVISOR ?? null,
-    university: process.env.DIPLOMA_UNIVERSITY ?? null,
+    supervisor: process.env.DIPLOMA_SUPERVISOR || null,
+    university: process.env.DIPLOMA_UNIVERSITY || null,
     year: 2026,
   },
 

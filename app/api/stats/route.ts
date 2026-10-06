@@ -12,7 +12,7 @@ export async function GET(request: Request) {
     const rl = await enforceRateLimit(request, RATE_LIMITS.read);
     const masking = ipMaskingEnabled();
     const stats = await buildStats(getStore(), masking);
-    return Response.json({ ...stats, ip_masking: masking, scope: "instance" }, { headers: { ...rl, "Cache-Control": "no-store" } });
+    return Response.json({ ...stats, ip_masking: masking, scope: getStore().kind === "supabase" ? "shared-store" : "instance" }, { headers: { ...rl, "Cache-Control": "no-store" } });
   } catch (err) {
     return toErrorResponse(err);
   }

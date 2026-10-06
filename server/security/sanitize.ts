@@ -20,8 +20,13 @@ export function maskIp(ip: string): string {
     const parts = ip.split(".");
     return parts.length === 4 ? `${parts[0]}.${parts[1]}.${parts[2]}.0` : ip;
   }
-  const groups = ip.split(":").filter((g, i, arr) => g !== "" || i === 0 || i === arr.length - 1);
-  return `${groups.slice(0, 3).join(":")}::`;
+  const parts=ip.split('::');
+  if(parts.length>2)return ip;
+  const left=parts[0]?parts[0].split(':'):[];
+  const right=parts[1]?parts[1].split(':'):[];
+  const groups=parts.length===2?[...left,...Array(Math.max(0,8-left.length-right.length)).fill('0'),...right]:left;
+  if(groups.length!==8||groups.some(g=>!/^([a-f0-9]{1,4})$/i.test(g)))return '::';
+  return `${groups.slice(0,3).map(g=>parseInt(g,16).toString(16)).join(':')}::`;
 }
 
 export function ipMaskingEnabled(): boolean {
