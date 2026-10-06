@@ -250,5 +250,42 @@
     "retry": "Retry",
     "home": "Go home",
     "loading": "Loading data"
+  },
+  "seo": {
+    "console": {
+      "title": "Live threat console",
+      "description": "Deterministic Simulation and real API events. Evidence, MITRE and risk."
+    },
+    "analyze": {
+      "title": "Network log analysis",
+      "description": "Upload CSV, JSON, Zeek, SSH or nginx logs for explainable signals and a JSON report."
+    },
+    "incidents": {
+      "title": "Security incidents",
+      "description": "Correlated signals, attack stages, evidence and recommendations."
+    },
+    "method": {
+      "title": "Threat detection method",
+      "description": "Rules, online baselines and a compact random forest. Reproducible synthetic benchmark."
+    },
+    "about": {
+      "title": "About the diploma project",
+      "description": "Intelligent network security monitoring. Author, methodology and contact form."
+    },
+    "api-docs": {
+      "title": "Aegis SOC API",
+      "description": "Event schema, protected ingest, detection, file analysis and SSE."
+    },
+    "privacy": {
+      "title": "Aegis SOC privacy",
+      "description": "Data sources, temporary retention, public access and analytics consent."
+    }
+  },
+  "analytics": {
+    "title": "Analytics with consent",
+    "note": "Allow configured visit analytics?",
+    "accept": "Allow",
+    "reject": "Decline",
+    "settings": "Cookie settings"
   }
 }

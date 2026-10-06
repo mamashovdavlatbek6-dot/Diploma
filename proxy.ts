@@ -1,3 +1,4 @@
+import { contentSecurityPolicy } from "@/lib/security/csp";
 import { NextResponse, type NextRequest } from "next/server";
 import { localeCookie } from "@/config/i18n";
 import { localeFromPath, negotiateLocale } from "@/lib/i18n/negotiate";
@@ -8,7 +9,11 @@ export function proxy(request: NextRequest) {
   const current = localeFromPath(pathname);
 
   if (current) {
-    const response = NextResponse.next();
+    const nonce=btoa(crypto.randomUUID());
+    const csp=contentSecurityPolicy(nonce,process.env.NODE_ENV==='development');
+    const headers=new Headers(request.headers);headers.set('x-nonce',nonce);headers.set('Content-Security-Policy',csp);
+    const response = NextResponse.next({request:{headers}});
+    response.headers.set('Content-Security-Policy',csp);
     if (request.cookies.get(localeCookie)?.value !== current) {
       response.cookies.set(localeCookie, current, { path: "/", maxAge: 60 * 60 * 24 * 365, sameSite: "lax" });
     }

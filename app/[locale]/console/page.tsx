@@ -1,2 +1,4 @@
+import { pageMetadata } from '@/lib/page-metadata';
+export const generateMetadata=({params}:{params:Promise<{locale:string}>})=>pageMetadata(params,'console');
 import { notFound } from 'next/navigation';import { isLocale } from '@/config/i18n';import { getMessages } from '@/lib/i18n/messages';import { snapshot } from '@/server/services/pipeline';import { LiveConsole } from '@/components/sections/live-console';
 export default async function ConsolePage({params}:{params:Promise<{locale:string}>}){const {locale}=await params;if(!isLocale(locale))notFound();const m=getMessages(locale);const initial=await snapshot('simulation');return <div className="container"><header className="page-head"><div><span className="eyebrow">{m.product.operations}</span><h1>{m.pages.console}</h1><p>{m.product.consoleSubline}</p></div><span className="terminal-label">AEGIS / ENGINE 1.0</span></header><LiveConsole initial={initial} m={m} locale={locale}/></div>;}

@@ -1,4 +1,6 @@
-import { cookies } from 'next/headers';
+import { Analytics } from '@/components/layout/analytics';
+import { ContactLinks } from '@/components/layout/contact-links';
+import { cookies,headers } from 'next/headers';
 import { Runtime } from '@/components/layout/runtime';
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
@@ -35,8 +37,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: { default: m.meta.title, template: `%s · ${siteConfig.name}` },
     description: m.meta.description,
     alternates: localizedAlternates(locale),
-    openGraph: { type: "website", siteName: siteConfig.name, title: m.meta.title, description: m.meta.description, locale: localeTags[locale] },
-    twitter: { card: "summary_large_image", title: m.meta.title, description: m.meta.description },
+    openGraph: { images:[{url:`/${locale}/og`,width:1200,height:630}], type: "website", siteName: siteConfig.name, title: m.meta.title, description: m.meta.description, locale: localeTags[locale] },
+    twitter: { card: "summary_large_image", title: m.meta.title, description: m.meta.description, images:[`/${locale}/og`] },
   };
 }
 
@@ -44,6 +46,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const m = getMessages(locale);
+  const nonce=(await headers()).get('x-nonce')??'';
   const theme = (await cookies()).get('AEGIS_THEME')?.value === 'light' ? 'light' : 'dark';
 
   return (
@@ -54,6 +57,8 @@ export default async function LocaleLayout({ children, params }: Props) {
         </a>
         <SiteHeader locale={locale} messages={m} theme={theme} />
         <Runtime />
+        <Analytics m={m} locale={locale} nonce={nonce}/><ContactLinks />
+        <script nonce={nonce} type="application/ld+json">{JSON.stringify({'@context':'https://schema.org','@type':'SoftwareApplication',name:siteConfig.name,applicationCategory:'SecurityApplication',operatingSystem:'Web',url:siteConfig.url,inLanguage:localeTags[locale],description:m.meta.description})}</script>
         <main id="main">{children}</main>
         <SiteFooter messages={m} locale={locale} />
       </body>

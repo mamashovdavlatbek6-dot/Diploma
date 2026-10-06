@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 import { locales, localeTags } from "@/config/i18n";
 import { siteConfig } from "@/config/site";
 
-/** Public pages; later phases append their paths here. */
-const paths = [""];
+/** Public marketing and documentation routes. */
+const paths = ["", "/analyze", "/method", "/about", "/api-docs", "/privacy"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return paths.flatMap((path) =>

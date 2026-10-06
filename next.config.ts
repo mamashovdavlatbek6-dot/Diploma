@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-// Baseline security headers; the full CSP is finalized in phase 8.
+// Global headers; page responses receive a request-specific CSP nonce in proxy.ts.
 const securityHeaders = [
   { key: "X-Frame-Options", value: "DENY" },
   { key: "X-Content-Type-Options", value: "nosniff" },
