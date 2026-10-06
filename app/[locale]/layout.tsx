@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
-import { Unbounded, Onest, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "../globals.css";
 import { isLocale, locales, localeTags } from "@/config/i18n";
 import { siteConfig } from "@/config/site";
@@ -10,9 +10,9 @@ import { localizedAlternates, metadataBase } from "@/lib/i18n/metadata";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 
-const unbounded = Unbounded({ subsets: ["latin", "cyrillic", "cyrillic-ext"], variable: "--font-unbounded", display: "swap" });
-const onest = Onest({ subsets: ["latin", "cyrillic", "cyrillic-ext"], variable: "--font-onest", display: "swap" });
-const jetbrains = JetBrains_Mono({ subsets: ["latin", "cyrillic"], variable: "--font-jetbrains", display: "swap" });
+const unbounded = localFont({ src: '../../public/fonts/Display.woff2', variable: '--font-unbounded', display: 'swap', weight: '600' });
+const onest = localFont({ src: '../../public/fonts/Onest.woff2', variable: '--font-onest', display: 'swap', weight: '100 900' });
+const jetbrains = localFont({ src: '../../public/fonts/JetBrainsMono.woff2', variable: '--font-jetbrains', display: 'swap', weight: '100 800' });
 
 type Props = { children: ReactNode; params: Promise<{ locale: string }> };
 

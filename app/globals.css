@@ -32,7 +32,7 @@
   --color-info: var(--sev-info);
   --font-display: var(--font-unbounded), system-ui, sans-serif;
   --font-sans: var(--font-onest), system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --font-mono: var(--font-jetbrains), var(--font-onest), ui-monospace, monospace;
   --shadow-glow: var(--glow);
 }
 

@@ -1,0 +1,12 @@
+{
+  "phase": "phase1-local",
+  "timestamp": "2026-10-06T11:30:38.308Z",
+  "results": [
+    {
+      "command": "npm run lint",
+      "code": 127,
+      "durationMs": 227,
+      "log": "npm notice run aegis-soc@0.1.0 lint\nnpm notice run eslint .\nsh: eslint: command not found\n"
+    }
+  ]
+}

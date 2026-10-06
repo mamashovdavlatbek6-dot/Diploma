@@ -1,0 +1,30 @@
+{
+  "phase": "phase2",
+  "timestamp": "2026-10-06T11:39:11.318Z",
+  "results": [
+    {
+      "command": "npm run lint",
+      "code": 0,
+      "durationMs": 1851,
+      "log": "npm notice run aegis-soc@0.1.0 lint\nnpm notice run eslint .\n"
+    },
+    {
+      "command": "npm run typecheck",
+      "code": 0,
+      "durationMs": 933,
+      "log": "npm notice run aegis-soc@0.1.0 typecheck\nnpm notice run tsc --noEmit\n"
+    },
+    {
+      "command": "npm run test",
+      "code": 0,
+      "durationMs": 804,
+      "log": "\n RUN  v3.2.7 /Users/texnomarket/Documents/Codex/2026-10-06/lovable-plugin-lovable-openai-curated-remote/outputs/aegis-soc\n\n ✓ tests/i18n.test.ts (13 tests) 3ms\n ✓ tests/input-hardening.test.ts (5 tests) 3ms\n ✓ tests/backend.test.ts (28 tests) 22ms\n\n Test Files  3 passed (3)\n      Tests  46 passed (46)\n   Start at  16:39:01\n   Duration  348ms (transform 143ms, setup 0ms, collect 305ms, tests 27ms, environment 0ms, prepare 128ms)\n\nnpm notice run aegis-soc@0.1.0 test\nnpm notice run vitest run\n"
+    },
+    {
+      "command": "npm run build",
+      "code": 0,
+      "durationMs": 9412,
+      "log": "▲ Next.js 16.3.8 (webpack)\n✓ Running next.config.ts took 62ms\n\n  Creating an optimized production build ...\n✓ Compiled successfully in 2.8s\n  Running TypeScript ...\n  Finished TypeScript in 995ms ...\n  Collecting page data using 7 workers ...\n  Generating static pages using 7 workers (0/7) ...\n  Generating static pages using 7 workers (1/7) \r\n  Generating static pages using 7 workers (3/7) \r\n  Generating static pages using 7 workers (5/7) \r\n✓ Generating static pages using 7 workers (7/7) in 92ms\n  Finalizing page optimization ...\n  Collecting build traces ...\n\nRoute (app)\n┌ ○ /_not-found\n├   /[locale]\n│ ├ ● /ru\n│ ├ ● /en\n│ └ ● /kk\n├ ƒ /api/detect\n├ ƒ /api/health\n├ ƒ /api/ingest\n├ ƒ /api/stats\n├ ○ /robots.txt\n└ ○ /sitemap.xml\n\n\nƒ Proxy (Middleware)\n\n○  (Static)   prerendered as static content\n●  (SSG)      prerendered as static HTML (uses generateStaticParams)\nƒ  (Dynamic)  server-rendered on demand\n\nnpm notice run aegis-soc@0.1.0 build\nnpm notice run next build --webpack\n"
+    }
+  ]
+}

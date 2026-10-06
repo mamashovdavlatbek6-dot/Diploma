@@ -1,0 +1,10 @@
+import { expect, it } from 'vitest';
+import { parseCicTimestamp } from '@/server/parsers/cic-csv';
+import { normalizeEvent } from '@/server/ingest/normalize';
+import { requireSameOrigin } from '@/server/security/origin';
+import { parseNdjson } from '@/server/parsers/json';
+it('rejects impossible CIC calendar dates', () => expect(parseCicTimestamp('31/02/2026 12:00')).toBeNull());
+it('rejects unsupported schema versions', () => expect(normalizeEvent({v: 99, ts: Date.now(), src_ip: '1.2.3.4'}, 'api').ok).toBe(false));
+it('rejects cross-origin browser calls', () => expect(() => requireSameOrigin(new Request('https://soc.example/api/detect', {headers: {origin: 'https://other.example'}}))).toThrow());
+it('accepts non-browser agents', () => expect(() => requireSameOrigin(new Request('https://soc.example/api/detect'))).not.toThrow());
+it('caps invalid rows as well as valid rows', () => { const r = parseNdjson(Array.from({length:100}, () => '{}').join('\n'), {source:'file', maxRows:5}); expect(r.records).toBe(6); expect(r.truncated).toBe(true); });
