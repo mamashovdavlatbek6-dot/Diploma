@@ -1,0 +1,30 @@
+{
+  "phase": "phase4",
+  "timestamp": "2026-10-06T11:56:19.923Z",
+  "results": [
+    {
+      "command": "npm run lint",
+      "code": 0,
+      "durationMs": 1911,
+      "log": "npm notice run aegis-soc@0.1.0 lint\nnpm notice run eslint .\n"
+    },
+    {
+      "command": "npm run typecheck",
+      "code": 0,
+      "durationMs": 1093,
+      "log": "npm notice run aegis-soc@0.1.0 typecheck\nnpm notice run tsc --noEmit\n"
+    },
+    {
+      "command": "npm run test",
+      "code": 0,
+      "durationMs": 915,
+      "log": "\n RUN  v3.2.7 /Users/texnomarket/Documents/Codex/2026-10-06/lovable-plugin-lovable-openai-curated-remote/outputs/aegis-soc\n\n ✓ tests/i18n.test.ts (13 tests) 4ms\n ✓ tests/ml.test.ts (67 tests) 15ms\n ✓ tests/input-hardening.test.ts (5 tests) 3ms\n ✓ tests/detectors.test.ts (29 tests) 45ms\n ✓ tests/backend.test.ts (28 tests) 27ms\n\n Test Files  5 passed (5)\n      Tests  142 passed (142)\n   Start at  16:56:11\n   Duration  425ms (transform 275ms, setup 0ms, collect 598ms, tests 95ms, environment 0ms, prepare 240ms)\n\nnpm notice run aegis-soc@0.1.0 test\nnpm notice run vitest run\n"
+    },
+    {
+      "command": "npm run build",
+      "code": 0,
+      "durationMs": 7988,
+      "log": "▲ Next.js 16.3.8 (webpack)\n✓ Running next.config.ts took 64ms\n\n  Creating an optimized production build ...\n✓ Compiled successfully in 1271ms\n  Running TypeScript ...\n  Finished TypeScript in 958ms ...\n  Collecting page data using 7 workers ...\n  Generating static pages using 7 workers (0/7) ...\n  Generating static pages using 7 workers (1/7) \r\n  Generating static pages using 7 workers (3/7) \r\n  Generating static pages using 7 workers (5/7) \r\n✓ Generating static pages using 7 workers (7/7) in 123ms\n  Finalizing page optimization ...\n  Collecting build traces ...\n\nRoute (app)\n┌ ○ /_not-found\n├   /[locale]\n│ ├ ● /ru\n│ ├ ● /en\n│ └ ● /kk\n├ ƒ /api/alerts\n├ ƒ /api/detect\n├ ƒ /api/events\n├ ƒ /api/health\n├ ƒ /api/incidents\n├ ƒ /api/incidents/[id]\n├ ƒ /api/ingest\n├ ƒ /api/stats\n├ ƒ /api/stream\n├ ○ /robots.txt\n└ ○ /sitemap.xml\n\n\nƒ Proxy (Middleware)\n\n○  (Static)   prerendered as static content\n●  (SSG)      prerendered as static HTML (uses generateStaticParams)\nƒ  (Dynamic)  server-rendered on demand\n\nnpm notice run aegis-soc@0.1.0 build\nnpm notice run next build --webpack\n"
+    }
+  ]
+}

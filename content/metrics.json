@@ -1,0 +1,90 @@
+{
+  "benchmark": "synthetic benchmark",
+  "dataset": "Aegis synthetic flow generator v1",
+  "seed": 42,
+  "trained_at": "2026-10-06T11:55:26.212826+00:00",
+  "train_rows": 6000,
+  "test_rows": 2000,
+  "accuracy": 0.9985,
+  "precision": 0.9985016501650165,
+  "recall": 0.9985,
+  "f1": 0.9984999930550733,
+  "roc_auc": 0.9999991525285613,
+  "classes": [
+    "benign",
+    "exfiltration",
+    "flood",
+    "scan"
+  ],
+  "confusion_matrix": [
+    [
+      1094,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      297,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      304,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      302
+    ]
+  ],
+  "classification_report": {
+    "benign": {
+      "precision": 0.9990867579908675,
+      "recall": 0.9990867579908675,
+      "f1-score": 0.9990867579908675,
+      "support": 1095.0
+    },
+    "exfiltration": {
+      "precision": 1.0,
+      "recall": 0.9966442953020134,
+      "f1-score": 0.9983193277310924,
+      "support": 298.0
+    },
+    "flood": {
+      "precision": 0.9967213114754099,
+      "recall": 0.9967213114754099,
+      "f1-score": 0.9967213114754099,
+      "support": 305.0
+    },
+    "scan": {
+      "precision": 0.9966996699669967,
+      "recall": 1.0,
+      "f1-score": 0.9983471074380166,
+      "support": 302.0
+    },
+    "accuracy": 0.9985,
+    "macro avg": {
+      "precision": 0.9981269348583185,
+      "recall": 0.9981130911920727,
+      "f1-score": 0.9981186261588466,
+      "support": 2000.0
+    },
+    "weighted avg": {
+      "precision": 0.9985016501650165,
+      "recall": 0.9985,
+      "f1-score": 0.9984999930550733,
+      "support": 2000.0
+    }
+  },
+  "limitations": [
+    "Synthetic distributions are not representative of production networks",
+    "Flow features cannot identify every semantic attack",
+    "Random holdout does not prove cross-network generalization",
+    "Concept drift, class imbalance, dataset bias and false positives require external validation"
+  ]
+}

@@ -229,7 +229,7 @@ describe("services and APIs", () => {
     expect(s.top_dst_ports[0]).toEqual({ port: 53, count: 2 });
   });
   it("detection reports a ready detection engine", () => {
-    expect(runDetection([])).toMatchObject({ alerts: [], engine: { status: "ready", detectors: 10 } });
+    expect(runDetection([])).toMatchObject({ alerts: [], engine: { status: "ready", detectors: 11 } });
   });
   it("POST /api/detect normalizes an auth.log batch and returns zero alerts", async () => {
     const res = await detectPost(new Request("http://x/api/detect", { method: "POST", body: AUTH, headers: { "content-type": "text/plain", "x-real-ip": "7.7.7.7" } }));
