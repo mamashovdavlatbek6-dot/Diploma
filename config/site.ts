@@ -29,9 +29,9 @@ export const siteConfig = {
    * page ships in a later phase, so the nav never contains dead links.
    */
   nav: [
-    { key: "console", href: "/console", enabled: false },
+    { key: "console", href: "/console", enabled: true },
     { key: "analyze", href: "/analyze", enabled: false },
-    { key: "incidents", href: "/incidents", enabled: false },
+    { key: "incidents", href: "/incidents", enabled: true },
     { key: "method", href: "/method", enabled: false },
     { key: "about", href: "/about", enabled: false },
   ],
