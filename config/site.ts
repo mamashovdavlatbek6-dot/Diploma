@@ -12,16 +12,16 @@ export const siteConfig = {
   repository: "https://github.com/mamashovdavlatbek6-dot/Diploma",
 
   diploma: {
-    author: null as string | null,
-    supervisor: null as string | null,
-    university: null as string | null,
+    author: process.env.DIPLOMA_AUTHOR ?? "Davlatbek Mamashov",
+    supervisor: process.env.DIPLOMA_SUPERVISOR ?? null,
+    university: process.env.DIPLOMA_UNIVERSITY ?? null,
     year: 2026,
   },
 
   contacts: {
-    email: null as string | null,
-    telegram: null as string | null, // username without @
-    whatsapp: null as string | null, // digits only, international format
+    email: process.env.CONTACT_EMAIL ?? null,
+    telegram: process.env.NEXT_PUBLIC_TELEGRAM_USERNAME ?? null, // username without @
+    whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? null, // digits only, international format
   },
 
   /**
@@ -30,10 +30,10 @@ export const siteConfig = {
    */
   nav: [
     { key: "console", href: "/console", enabled: true },
-    { key: "analyze", href: "/analyze", enabled: false },
+    { key: "analyze", href: "/analyze", enabled: true },
     { key: "incidents", href: "/incidents", enabled: true },
-    { key: "method", href: "/method", enabled: false },
-    { key: "about", href: "/about", enabled: false },
+    { key: "method", href: "/method", enabled: true },
+    { key: "about", href: "/about", enabled: true },
   ],
 } as const;
 

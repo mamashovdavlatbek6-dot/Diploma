@@ -1,3 +1,4 @@
+import { notifyIncidents } from "@/server/adapters/notifications";
 import { ingestPipeline, publicData } from "@/server/services/pipeline";
 import { getStore } from "@/server/adapters/store";
 import { requireToken } from "@/server/security/auth";
@@ -19,6 +20,7 @@ export async function POST(request: Request) {
     const events = source === "agent" ? parsed.events.map((e) => ({ ...e, source })) : parsed.events;
     const accepted = await getStore().append(events);
     const detection = await ingestPipeline(events);
+    await notifyIncidents(detection.incidents);
     return Response.json(
       {
         format: parsed.format,

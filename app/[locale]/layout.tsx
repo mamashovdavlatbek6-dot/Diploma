@@ -55,7 +55,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <SiteHeader locale={locale} messages={m} theme={theme} />
         <Runtime />
         <main id="main">{children}</main>
-        <SiteFooter messages={m} />
+        <SiteFooter messages={m} locale={locale} />
       </body>
     </html>
   );

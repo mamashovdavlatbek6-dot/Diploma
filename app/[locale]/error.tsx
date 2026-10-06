@@ -1,12 +1,2 @@
-"use client";
-
-export default function LocaleError({ reset }: { error: Error & { digest?: string }; reset: () => void }) {
-  return (
-    <section className="mx-auto grid min-h-[60dvh] max-w-md place-content-center gap-4 px-5 text-center">
-      <h1 className="font-display text-2xl">500</h1>
-      <button type="button" onClick={reset} className="glass min-h-11 rounded-full px-5 text-sm hover:text-primary">
-        ↻
-      </button>
-    </section>
-  );
-}
+ 'use client';import { useParams } from 'next/navigation';import { isLocale } from '@/config/i18n';import { getMessages } from '@/lib/i18n/messages';
+export default function ErrorBoundary({reset}:{error:Error&{digest?:string};reset:()=>void}){const params=useParams();const locale=typeof params.locale==='string'&&isLocale(params.locale)?params.locale:'ru';const m=getMessages(locale);return <section className="container error-page"><span className="eyebrow">500 / AEGIS</span><h1>{m.errors.server}</h1><button className="action" onClick={reset}>{m.errors.retry}</button></section>;}

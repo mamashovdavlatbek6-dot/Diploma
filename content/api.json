@@ -1,0 +1,108 @@
+{
+  "endpoints": [
+    [
+      "POST",
+      "/api/ingest",
+      "INGEST_TOKEN"
+    ],
+    [
+      "POST",
+      "/api/detect",
+      null
+    ],
+    [
+      "POST",
+      "/api/analyze-file",
+      null
+    ],
+    [
+      "GET",
+      "/api/events?source=simulation|ingested",
+      null
+    ],
+    [
+      "GET",
+      "/api/alerts?source=simulation|ingested",
+      null
+    ],
+    [
+      "GET",
+      "/api/incidents?source=simulation|ingested",
+      null
+    ],
+    [
+      "GET",
+      "/api/incidents/{id}?source=simulation|ingested",
+      null
+    ],
+    [
+      "PATCH",
+      "/api/incidents/{id}",
+      "ADMIN_TOKEN"
+    ],
+    [
+      "GET",
+      "/api/stream?source=simulation|ingested&lastEventId=0",
+      null
+    ],
+    [
+      "GET",
+      "/api/stats",
+      null
+    ],
+    [
+      "GET",
+      "/api/health",
+      null
+    ],
+    [
+      "POST",
+      "/api/contact",
+      null
+    ]
+  ],
+  "event": {
+    "v": 1,
+    "ts": "2026-10-06T12:00:00.000Z",
+    "source": "api",
+    "src_ip": "192.0.2.1",
+    "dst_ip": "10.0.0.2",
+    "src_port": 54321,
+    "dst_port": 22,
+    "proto": "tcp",
+    "bytes_in": 0,
+    "bytes_out": 256,
+    "packets": 1,
+    "duration_ms": 100,
+    "tcp_flags": "S",
+    "action": "fail",
+    "user": "demo",
+    "country": null,
+    "http": null,
+    "dns": null,
+    "raw_ref": "sample:1"
+  },
+  "response": {
+    "simulation": false,
+    "alerts": [
+      {
+        "id": "sha256 prefix",
+        "type": "brute_force",
+        "severity": "high",
+        "confidence": 0.9,
+        "entities": [
+          "192.0.2.1"
+        ],
+        "mitre": "T1110",
+        "evidence": [],
+        "contributions": [],
+        "actions": [
+          "rate_limit",
+          "reset_credentials"
+        ]
+      }
+    ],
+    "incidents": [],
+    "risk": []
+  }
+}

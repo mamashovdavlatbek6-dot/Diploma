@@ -1,0 +1,2 @@
+import { mkdirSync,writeFileSync } from 'node:fs';import { attackTypes } from '../server/detection/types';import { scenario } from '../server/services/simulator';
+const start=Date.UTC(2026,9,6,12);mkdirSync('public/samples/attacks',{recursive:true});for(const type of attackTypes)writeFileSync(`public/samples/attacks/${type}.json`,JSON.stringify(scenario(type,start),null,2)+'\n');writeFileSync('public/samples/generic.ndjson',scenario('port_scan',start).map(e=>JSON.stringify(e)).join('\n')+'\n');

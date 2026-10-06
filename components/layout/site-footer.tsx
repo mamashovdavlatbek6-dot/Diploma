@@ -1,17 +1,2 @@
-import { siteConfig } from "@/config/site";
-import type { Messages } from "@/lib/i18n/messages";
-
-export function SiteFooter({ messages }: { messages: Messages }) {
-  const { diploma } = siteConfig;
-  return (
-    <footer className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 border-t border-line px-5 py-8 text-sm text-muted">
-      <p>
-        © {diploma.year} {siteConfig.name} · {messages.footer.rights}
-        {diploma.university ? ` · ${diploma.university}` : ""}
-      </p>
-      <a href={siteConfig.repository} target="_blank" rel="noopener noreferrer" className="hover:text-primary">
-        {messages.footer.source}
-      </a>
-    </footer>
-  );
-}
+import { siteConfig } from '@/config/site';import type { Messages } from '@/lib/i18n/messages';import type { Locale } from '@/config/i18n';import { RouteLink } from './route-link';
+export function SiteFooter({messages,locale}:{messages:Messages;locale:Locale}){return <footer className="site-footer container"><span>© {siteConfig.diploma.year} {siteConfig.name} · {messages.footer.rights}</span><div><RouteLink href={`/${locale}/api-docs`}>{messages.docs.title}</RouteLink><RouteLink href={`/${locale}/privacy`}>{messages.privacy.title}</RouteLink><a href={siteConfig.repository} target="_blank" rel="noopener noreferrer">{messages.footer.source} ↗</a></div></footer>;}
